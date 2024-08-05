@@ -1,0 +1,136 @@
+{
+  "Coefficients Z": [
+    {
+      "Capacity": "in CII calc."
+    },
+    {
+      "Vessel Type": "Bulk carrier",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Bulk carrier",
+      "Z1": 0.86,
+      "Z2": 0.94,
+      "Z3": 1.06,
+      "Z4": 1.18
+    },
+    {
+      "Vessel Type": "Gas carrier",
+      "Capacity": "DWT ≥ 65,000",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Gas carrierDWT ≥ 65,000",
+      "Z1": 0.81,
+      "Z2": 0.91,
+      "Z3": 1.12,
+      "Z4": 1.44
+    },
+    {
+      "Vessel Type": "Gas carrier",
+      "Capacity": "DWT < 65,000",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Gas carrierDWT < 65,000",
+      "Z1": 0.85,
+      "Z2": 0.95,
+      "Z3": 1.06,
+      "Z4": 1.25
+    },
+    {
+      "Vessel Type": "Tanker",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Tanker",
+      "Z1": 0.82,
+      "Z2": 0.93,
+      "Z3": 1.08,
+      "Z4": 1.28
+    },
+    {
+      "Vessel Type": "Container Ship",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Container Ship",
+      "Z1": 0.83,
+      "Z2": 0.94,
+      "Z3": 1.07,
+      "Z4": 1.19
+    },
+    {
+      "Vessel Type": "General Cargo Ship ",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "General Cargo Ship ",
+      "Z1": 0.83,
+      "Z2": 0.94,
+      "Z3": 1.06,
+      "Z4": 1.19
+    },
+    {
+      "Vessel Type": "Refrigerated Cargo ",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Refrigerated Cargo ",
+      "Z1": 0.78,
+      "Z2": 0.91,
+      "Z3": 1.07,
+      "Z4": 1.2
+    },
+    {
+      "Vessel Type": "Combination Carrier ",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Combination Carrier ",
+      "Z1": 0.87,
+      "Z2": 0.96,
+      "Z3": 1.06,
+      "Z4": 1.14
+    },
+    {
+      "Vessel Type": "LNG",
+      "Capacity": "DWT ≥ 100000",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "LNGDWT ≥ 100000",
+      "Z1": 0.89,
+      "Z2": 0.98,
+      "Z3": 1.06,
+      "Z4": 1.13
+    },
+    {
+      "Vessel Type": "LNG",
+      "Capacity": "DWT < 100000",
+      "Vessel Type for Coefficiencts Z": "LNGDWT < 100000",
+      "Z1": 0.78,
+      "Z2": 0.92,
+      "Z3": 1.1,
+      "Z4": 1.37
+    },
+    {
+      "Vessel Type": "Ro-ro cargo ship (Vehicle carrier) ",
+      "Capacity": "GT",
+      "Vessel Type for Coefficiencts Z": "Ro-ro cargo ship (Vehicle carrier) ",
+      "Z1": 0.86,
+      "Z2": 0.94,
+      "Z3": 1.06,
+      "Z4": 1.16
+    },
+    {
+      "Vessel Type": "Ro-ro cargo ship ",
+      "Capacity": "DWT",
+      "Vessel Type for Coefficiencts Z": "Ro-ro cargo ship ",
+      "Z1": 0.66,
+      "Z2": 0.9,
+      "Z3": 1.11,
+      "Z4": 1.37
+    },
+    {
+      "Vessel Type": "Ro-ro passenger ship ",
+      "Capacity": "GT",
+      "Vessel Type for Coefficiencts Z": "Ro-ro passenger ship ",
+      "Z1": 0.72,
+      "Z2": 0.9,
+      "Z3": 1.12,
+      "Z4": 1.41
+    },
+    {
+      "Vessel Type": "Cruise passenger ship",
+      "Capacity": "GT",
+      "Vessel Type for Coefficiencts Z": "Cruise passenger ship",
+      "Z1": 0.87,
+      "Z2": 0.95,
+      "Z3": 1.06,
+      "Z4": 1.16
+    }
+  ]
+}

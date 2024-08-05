@@ -1,0 +1,132 @@
+{
+    "Coefficients Y":[
+ {
+  "Ship Type": "Bulk Carrier",
+  "Capacity": "DWT ≥ 279,000 ",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Bulk CarrierDWT ≥ 279,000 ",
+  "Y1": 4745,
+  "Y2": 0.622
+ },
+ {
+  "Ship Type": "Bulk Carrier",
+  "Capacity": "DWT < 279,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Bulk CarrierDWT < 279,000",
+  "Y1": 4745,
+  "Y2": 0.622
+ },
+ {
+  "Ship Type": "Gas  Carrier",
+  "Capacity": "DWT ≥ 65,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Gas  CarrierDWT ≥ 65,000",
+  "Y1": 144000000000,
+  "Y2": 2.071
+ },
+ {
+  "Ship Type": "Gas  Carrier",
+  "Capacity": "DWT < 65,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Gas  CarrierDWT < 65,000",
+  "Y1": 8104,
+  "Y2": 0.639
+ },
+ {
+  "Ship Type": "Tanker",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Tanker",
+  "Y1": 5247,
+  "Y2": 0.61
+ },
+ {
+  "Ship Type": "Container Ship",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Container Ship",
+  "Y1": 1984,
+  "Y2": 0.489
+ },
+ {
+  "Ship Type": "General Cargo",
+  "Capacity": "DWT ≥ 20,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "General CargoDWT ≥ 20,000",
+  "Y1": 31948,
+  "Y2": 0.792
+ },
+ {
+  "Ship Type": "General Cargo",
+  "Capacity": "DWT < 20,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "General CargoDWT < 20,000",
+  "Y1": 588,
+  "Y2": 0.389
+ },
+ {
+  "Ship Type": "Refrigerated Cargo",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Refrigerated Cargo",
+  "Y1": 4600,
+  "Y2": 0.557
+ },
+ {
+  "Ship Type": "Combination Carrier",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Combination Carrier",
+  "Y1": 40853,
+  "Y2": 0.812
+ },
+ {
+  "Ship Type": "LNG Carrier ",
+  "Capacity": "DWT ≥ 100,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "LNG Carrier DWT ≥ 100,000",
+  "Y1": 9.827,
+  "Y2": 0
+ },
+ {
+  "Ship Type": "LNG Carrier ",
+  "Capacity": "100,000 > DWT ≥ 65,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "LNG Carrier 100,000 > DWT ≥ 65,000",
+  "Y1": 145000000000000,
+  "Y2": 2.673
+ },
+ {
+  "Ship Type": "LNG Carrier ",
+  "Capacity": "DWT < 65,000",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "LNG Carrier DWT < 65,000",
+  "Y1": 145000000000000,
+  "Y2": 2.673
+ },
+ {
+  "Ship Type": "Ro-ro cargo ship (Vehicle carrier) ",
+  "Capacity Input": "GT",
+  "Vessel Type for Coefficiencts Y": "Ro-ro cargo ship (Vehicle carrier) ",
+  "Y1": 5739,
+  "Y2": 0.631
+ },
+ {
+  "Ship Type": "Ro-ro cargo ship ",
+  "Capacity Input": "DWT",
+  "Vessel Type for Coefficiencts Y": "Ro-ro cargo ship ",
+  "Y1": 10952,
+  "Y2": 0.637
+ },
+ {
+  "Ship Type": "Ro-ro passenger ship ",
+  "Capacity Input": "GT",
+  "Vessel Type for Coefficiencts Y": "Ro-ro passenger ship ",
+  "Y1": 7540,
+  "Y2": 0.587
+ },
+ {
+  "Ship Type": "Cruise passenger ship",
+  "Capacity Input": "GT",
+  "Vessel Type for Coefficiencts Y": "Cruise passenger ship",
+  "Y1": 930,
+  "Y2": 0.383
+ }
+]
+}

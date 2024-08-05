@@ -1,0 +1,44 @@
+{
+  "Fuel Type and CO2 Coefficients": [
+    {
+      "Fuel Type": "HFO",
+      "CO2 Coefficient": 3.114
+    },
+    {
+      "Fuel Type": "LFO",
+      "CO2 Coefficient": 3.151
+    },
+    {
+      "Fuel Type": "MGO",
+      "CO2 Coefficient": 3.206
+    },
+    {
+      "Fuel Type": "MDO",
+      "CO2 Coefficient": 3.206
+    },
+    {
+      "Fuel Type": "BIOLFO",
+      "CO2 Coefficient": 2.7
+    },
+    {
+      "Fuel Type": "BIOMGO",
+      "CO2 Coefficient": 2.5
+    },
+    {
+      "Fuel Type": "LPG",
+      "CO2 Coefficient": 3
+    },
+    {
+      "Fuel Type": "LNG",
+      "CO2 Coefficient": 2.75
+    },
+    {
+      "Fuel Type": "METHANOL",
+      "CO2 Coefficient": 1.37
+    },
+    {
+      "Fuel Type": "ETHANOL",
+      "CO2 Coefficient": 1.91
+    }
+  ]
+}

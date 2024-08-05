@@ -1,0 +1,40 @@
+{
+  "Correction Factors": [
+    {
+      "Year": 2020,
+      "Factor %": 1,
+      "Year": 2023,
+      "yi": 0
+    },
+    {
+      "Year": 2021,
+      "Factor %": 2,
+      "Year": 2024,
+      "yi": 1
+    },
+    {
+      "Year": 2022,
+      "Factor %": 3,
+      "Year": 2025,
+      "yi": 2
+    },
+    {
+      "Year": 2023,
+      "Factor %": 5,
+      "Year": 2026,
+      "yi": 3
+    },
+    {
+      "Year": 2024,
+      "Factor %": 7
+    },
+    {
+      "Year": 2025,
+      "Factor %": 9
+    },
+    {
+      "Year": 2026,
+      "Factor %": 11
+    }
+  ]
+}
