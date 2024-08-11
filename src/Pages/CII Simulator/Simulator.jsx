@@ -1,4 +1,4 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Header from "../../Components/Header";
 import Section1 from "../../Components/Section1/Section1";
@@ -9,8 +9,7 @@ const Container = styled.div`
   margin: 20px;
   oveflow-y: scroll;
   display: flex;
-  `;
-
+`;
 
 // const Navbar = styled.div`
 //   width: 20%;
@@ -21,14 +20,10 @@ const Container = styled.div`
 //   box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Subtle shadow for separation */
 // `;
 
-const Container1 = styled.div`
-  width: 100%;
-  margin-left: 15px;
-`;
 const NavbarIcon = styled.div`
   width: 40px;
   height: 40px;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   color: white;
   display: flex;
   align-items: center;
@@ -42,33 +37,36 @@ const NavbarIcon = styled.div`
 `;
 
 const Navbar = styled.div`
-  width: ${(props) => (props.isOpen ? "200px" : "0")};
-  height: 100vh;
-  background-color: #2C3E50;
+  width: 15%;
+  height: 50%;
+  background-color: #f0f4f8;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ${(props) => (props.isOpen ? "10px" : "0")};
+  padding: 10px;
   transition: width 0.3s, padding 0.3s;
   overflow: hidden;
   position: fixed;
-  top: 0;
+  top: 5;
   left: 0;
   z-index: 999;
 `;
 
 const MainContent = styled.div`
-  flex: 1;
+  /*  flex: 1; */
   display: flex;
   flex-direction: column;
   align-items: center; /* Center horizontally */
   justify-content: center;
-  overflow-y: auto;
-  margin-left: ${(props) => (props.isOpen ? "220px" : "60px")}; /* Adjust margin based on navbar state */
+  margin-left: 220px;
   transition: margin-left 0.3s;
   margin-top: 10px;
-  `;
+  width: 85%;
+`;
 
+const SectionContainer = styled.div`
+  width: 100%;
+`;
 
 // const MainContent = styled.div`
 //   flex: 1;
@@ -94,30 +92,8 @@ const Button = styled.div`
   cursor: pointer;
 `;
 
-const NavLink = styled.div`
-  padding: 10px 0;
-  cursor: pointer;
-  color: fff;
-  &:hover {
-    background-color: #fff;
-  }
-`;
-
-/* const NavLink = styled.div`
-  padding: 10px 0;
-  cursor: pointer;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: #555;
-  }
-`; */
-
 const NavItem = styled.div`
-  color: #fff;
+  color: #333;
   padding: 15px 10px;
   text-align: center;
   width: 100%;
@@ -125,32 +101,29 @@ const NavItem = styled.div`
   transition: background-color 0.3s;
   margin-top: 30px;
   &:hover {
-    background-color: #444;
-  }
-
-  span {
-    display: ${(props) => (props.isOpen ? "inline" : "none")};
+    background-color: #ddd;
   }
 `;
 
-function NavbarComponent({onSectionClick,isOpen}) {
+function NavbarComponent({ onSectionClick }) {
   return (
-    <Navbar isOpen = {isOpen}>
-     {/*  <h2>Navigation</h2> */}
-     <NavItem onClick={() => onSectionClick("section1")}>Section 1</NavItem>
-      <NavItem onClick={() => onSectionClick("section2")}>Section 2</NavItem>
+    <Navbar>
+      {/*  <h2>Navigation</h2> */}
+      <NavItem onClick={() => onSectionClick("section1")}>Current CII</NavItem>
+      <NavItem onClick={() => onSectionClick("section2")}>
+        Remaining Days Profile
+      </NavItem>
       <NavItem onClick={() => onSectionClick("section3")}>Final CII</NavItem>
     </Navbar>
   );
 }
 
-
 function CIISimulator() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSimulate,setSImulate] = useState(false)
+  const [isSimulate, setSImulate] = useState(0);
 
   const handleSimulate = () => {
-    setSImulate(!isSimulate);
+    setSImulate((prev) => prev + 1);
   };
 
   const section1Ref = useRef(null);
@@ -171,21 +144,20 @@ function CIISimulator() {
     <>
       <Header />
       <Container>
-      <NavbarIcon onClick={() => setIsOpen(!isOpen)}>
-          ☰
-        </NavbarIcon>
-     <NavbarComponent onSectionClick={handleSectionClick} isOpen={isOpen}/>
-      <MainContent isOpen={isOpen}>
-        <Container1 ref = {section1Ref}>
-        <Section1/>
-        </Container1>
-        
-        <Container1 ref = {section2Ref}>
-        <Section2  />
-        </Container1>
-        
-        <Button onClick={handleSimulate}>Simulate</Button>
-        {isSimulate && <FinalCII />}
+        <NavbarComponent onSectionClick={handleSectionClick} />
+        <MainContent>
+          <SectionContainer ref={section1Ref}>
+            <Section1 />
+          </SectionContainer>
+
+          <SectionContainer ref={section2Ref}>
+            <Section2 />
+          </SectionContainer>
+
+          <Button onClick={handleSimulate}>Simulate</Button>
+          <SectionContainer ref={finalCIIRef}>
+            <FinalCII simulate={isSimulate} />
+          </SectionContainer>
         </MainContent>
       </Container>
     </>

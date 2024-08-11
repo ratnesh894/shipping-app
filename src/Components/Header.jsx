@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.header`
-  background-color: #2C3E50; /* Dark Blue */
+  background-color: #353cf7; /* Dark Blue */
   color: #FFFFFF; /* White */
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

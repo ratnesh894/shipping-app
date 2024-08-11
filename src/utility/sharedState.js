@@ -6,6 +6,7 @@ let transportWork = null;
 let co2Section1 =  null;
 let distance = null;
 let reqCII = null;
+let remDays = null;
 
 export const setSelectedShip = (ship) => {
   selectedShip = ship;
@@ -61,4 +62,12 @@ export const setRequiredCII = (val) => {
 
 export const getRequiredCII = () => {
   return reqCII
+}
+
+export const setRemainingDays= (val) => {
+  remDays = val;
+}
+
+export const getRemainingDays = () => {
+  return remDays;
 }

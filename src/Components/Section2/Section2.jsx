@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getSelectedShip,getSelectedSize, setCo2, setTansportWork } from "../../utility/sharedState";
+import { getRemainingDays, getSelectedShip,getSelectedSize, setCo2, setTansportWork } from "../../utility/sharedState";
 import {
   findMEConsLaden,
   findMEConsBallast,
@@ -83,7 +83,7 @@ const BoxContainer = styled.div`
 
 const Dropdown = styled.select`
   padding: 5px;
-  margin-top: 10px;
+  margin-top: 0px;
   width: 52%;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -144,6 +144,7 @@ const Label = styled.label`
   font-family: "Open Sans", sans-serif;
   color: #333;
   margin-right: 10px;
+  margin-top: 5px;
   flex: 1;
   text-align: right;
 `;
@@ -200,6 +201,7 @@ const Section2 = () => {
 
   const [totalFuelRatio, setTotalFuelRatio] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [totalOperationalProfile,setTotalOperationalProfile] = useState(0)
 
   const handleLadenSpeedChange = (event) => {
     setLadenSpeed(parseFloat(event.target.value));
@@ -215,11 +217,20 @@ const Section2 = () => {
     setIsError(totalRatio !== 100);
   }, [hfo, lfo, mgo, mdo, bioLfo, bioMgo, lpg, lng, methanol, ethanol]);
 
+  useEffect(() => {
+    // Calculate total fuel ratio
+    const total = [seaLaden,seaBallast,anchor,loadPort,dischargePort,manuvering]
+      .map(val => parseFloat(val) || 0)
+      .reduce((acc, val) => acc + val, 0);
+
+    setTotalOperationalProfile(total);
+    setIsError(total !== 100);
+  }, [seaLaden,seaBallast,anchor,loadPort,dischargePort,manuvering]);
+
   const selectedShipName = getSelectedShip();
   const selectedShipSize = 49000
   
-  const remainingDays = 215;
-
+  const remainingDays = getRemainingDays();
   const seaLadenRef = `${selectedShipName} ${ladenSpeed}`;
   const seaBallastRef = `${selectedShipName} ${ladenSpeed}`;
   const seaManeuvringRef = `${selectedShipName} ${seaManeuvringSpeed}`;
@@ -506,6 +517,19 @@ const Section2 = () => {
      <ContentWrapper>
         <Container>
           <Subheading>Operational Profile (%)</Subheading>
+          <div style={{display:'flex', flexDirection:'row'}}>
+          <div style={{display:'flex',flexDirection:'column',width:'20%'}}>
+          <TotalSumSection>
+            <span>Total Sum:{totalFuelRatio}%</span>
+            {isError ? (
+              <RedCross>✗</RedCross>
+            ) : (
+              <GreenTick>✓</GreenTick>
+            )}
+          </TotalSumSection>
+          {isError && <ErrorMessage>Total fuel ratio must be 100%.</ErrorMessage>}
+          </div>
+          <div style={{display:'flex',flexDirection:'column'}}>
           <FormGroup>
             <Label>Sea Laden:</Label>
             <Input
@@ -554,6 +578,8 @@ const Section2 = () => {
               onChange={(e) => setManuvering(e.target.value)}
             />
           </FormGroup>
+          </div>
+          </div>
         </Container>
         <Container>
         <Subheading>Estimate Exemption (%)</Subheading>

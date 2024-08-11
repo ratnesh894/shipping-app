@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, {keyframes} from "styled-components";
+import React, { useState,useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import {
   getCo2Value,
   getTransportWork,
@@ -8,7 +8,7 @@ import {
   getSelectedShip,
   getRequiredCII,
 } from "../../utility/sharedState";
-import data from '../../data/onboardingSheet.json'
+import data from "../../data/onboardingSheet.json";
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ const Container = styled.div`
 
 const RatingWrapper = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   margin-top: 20px;
 `;
@@ -72,7 +72,7 @@ const Subheading = styled.span`
   color: #333;
   margin-bottom: 20px;
   margin-top: 5px;
-  text-align:center;
+  text-align: center;
 `;
 
 const pulse = keyframes`
@@ -88,108 +88,123 @@ const pulse = keyframes`
 `;
 
 const Rating = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 48px;
   font-weight: bold;
+  position: relative;
   color: #fff;
   border-radius: 15px;
   margin-right: 10px;
   background: ${({ rating }) => {
     switch (rating) {
-      case 'A':
-        return 'linear-gradient(45deg, #4caf50, #81c784)';
-      case 'B':
-        return 'linear-gradient(45deg, #f44336, #e57373)';
-      case 'C':
-        return 'linear-gradient(45deg, #ff9800, #ffb74d)';
-      case 'D':
-        return 'orange';
-      case 'E':
-        return 'red';
+      case "A":
+        return "linear-gradient(45deg, #4caf50, #81c784)";
+      case "B":
+        return "linear-gradient(45deg, #90EE90, #32CD32)";
+      case "C":
+        return "linear-gradient(45deg, #FFFACD, #FFBF00)";
+      case "D":
+        return "orange";
+      case "E":
+        return "linear-gradient(45deg, #ff5050, #800000)";
       default:
-        return 'linear-gradient(45deg, #ccc, #eee)';
+        return "linear-gradient(45deg, #ccc, #eee)";
     }
-    
   }};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.1);
   animation: ${pulse} 2s infinite;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 5px; /* Adjust the position to control the border width */
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    border: 3px solid rgba(255, 255, 255, 0.6); /* Adjust the color and width of the border */
+    border-radius: 15px; /* Match the border radius */
+  }
 `;
 
-const FinalCII = () => {
-  const co2Value = getCo2Value();
-  const tranPortWorkValue = getTransportWork();
-  const co2Section1Value = getCo2Section1();
-  const distance = getDistanceVal();
-  const selectedShip = getSelectedShip()
-  const requiredCII = getRequiredCII()
+const FinalCII = ({ simulate }) => {
+  const [totalCo2Mt, setTotalCo2Mt] = useState(0);
+  const [totalTansPortWk, setTotalTansPortWk] = useState(0);
+  const [attainedCII, setAttainedCII] = useState(0);
+  const [rating, setRating] = useState("");
 
-  const shipData = data['Onboarding Sheet'].find(ship => ship['Vessel Name'] === selectedShip);
-  const d1Value = shipData ? shipData['d1'] : null;
-  const d2Value = shipData ? shipData['d2'] : null;
-  const d3Value = shipData ? shipData['d3'] : null;
-  const d4Value = shipData ? shipData['d4'] : null;
-  
-  const limitA = requiredCII * d1Value;
-  const limitB  = requiredCII * d2Value;
-  const limitC = requiredCII * d3Value;
-  const limitD = requiredCII * d4Value;
-  
+  useEffect(() => {
+    const co2Value = getCo2Value();
+    const tranPortWorkValue = getTransportWork();
+    const co2Section1Value = getCo2Section1();
+    const distance = getDistanceVal();
+    const selectedShip = getSelectedShip();
+    const requiredCII = getRequiredCII();
 
-  console.log(co2Value);
-  console.log(co2Section1Value);
-  console.log(tranPortWorkValue);
-  console.log(distance);
-  
-  
-  
-  const totalCo2Mt = parseFloat(co2Value) + parseFloat(co2Section1Value);
-  console.log(totalCo2Mt);
-  
-  const totalTansPortWk = parseFloat(tranPortWorkValue) + parseFloat(distance);
-  const attainedCII =
-    (parseFloat(totalCo2Mt) * 1000000) / parseFloat(totalTansPortWk);
-    console.log(attainedCII);
-    
+    const shipData = data["Onboarding Sheet"].find(
+      (ship) => ship["Vessel Name"] === selectedShip
+    );
+    const d1Value = shipData ? shipData["d1"] : null;
+    const d2Value = shipData ? shipData["d2"] : null;
+    const d3Value = shipData ? shipData["d3"] : null;
+    const d4Value = shipData ? shipData["d4"] : null;
 
- const generateRating = () => {
-    let rating;
-    if(attainedCII <= limitA) {
-      rating = 'A'
-    } else if ((limitA <= attainedCII) && (attainedCII < limitB) ){
-      rating = 'B'
-    } else if((limitB <= attainedCII) && (attainedCII < limitC) ) {
-      rating = 'C'
-    } else if((limitC <= attainedCII) && (attainedCII < limitD) ) {
-      rating = 'D'
-    } else if (limitD <= attainedCII) {
-      rating = 'E'
-    }
-    return rating;
-  }
+    const limitA = requiredCII * d1Value;
+    const limitB = requiredCII * d2Value;
+    const limitC = requiredCII * d3Value;
+    const limitD = requiredCII * d4Value;
 
-  const rating  = generateRating()
-  
+    const totalCo2Mt = parseFloat(co2Value) + parseFloat(co2Section1Value);
+    setTotalCo2Mt(totalCo2Mt);
+
+    const totalTansPortWk =
+      parseFloat(tranPortWorkValue) + parseFloat(distance);
+    setTotalTansPortWk(totalTansPortWk);
+
+    const attainedCII =
+      (parseFloat(totalCo2Mt) * 1000000) / parseFloat(totalTansPortWk);
+    setAttainedCII(attainedCII);
+
+    const generateRating = () => {
+      let rating;
+      if (attainedCII <= limitA) {
+        rating = "A";
+      } else if (limitA <= attainedCII && attainedCII < limitB) {
+        rating = "B";
+      } else if (limitB <= attainedCII && attainedCII < limitC) {
+        rating = "C";
+      } else if (limitC <= attainedCII && attainedCII < limitD) {
+        rating = "D";
+      } else if (limitD <= attainedCII) {
+        rating = "E";
+      }
+      return rating;
+    };
+
+    setRating(generateRating());
+  }, [simulate]);
 
   return (
     <Wrapper>
       <HeadingSection>
         <Heading>Output - Predicted CII</Heading>
       </HeadingSection>
-      <Container>
-        <Label>Total CO2(MT):{totalCo2Mt}</Label>
-        <Label>Total Transport Work:{totalTansPortWk}</Label>
-        <Label>Attained CII:{attainedCII}</Label>
-        <RatingWrapper>
-        <Subheading>Rating</Subheading>
-        <div style={{flexDirection:'row',display:'flex'}}>
-        <Rating rating={rating}>{rating}</Rating>
-        </div>
-      </RatingWrapper>
-      </Container>
+      {simulate > 0 && (
+        <Container>
+          <Label>Total CO2(MT): {totalCo2Mt.toFixed(2)}</Label>
+          <Label>Total Transport Work: {totalTansPortWk.toFixed(2)}</Label>
+          <Label>Attained CII: {attainedCII.toFixed(2)}</Label>
+          <RatingWrapper>
+            <Subheading>Rating</Subheading>
+            <div style={{ flexDirection: "row", display: "flex" }}>
+              <Rating rating={rating}>{rating}</Rating>
+            </div>
+          </RatingWrapper>
+        </Container>
+      )}
     </Wrapper>
   );
 };
