@@ -13,7 +13,6 @@ import data from "../../data/onboardingSheet.json";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 95%;
   padding: 12px;
   margin: 0 0 20px 0;
@@ -45,17 +44,20 @@ const Label = styled.label`
   font-size: 16px;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
-  color: #333;
+  color: #4a5568;
   margin-right: 10px;
   flex: 1;
   text-align: left;
   margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 40px;
+  justify-content: center;
+  gap: 40px;
 `;
 
 const RatingWrapper = styled.div`
@@ -69,10 +71,11 @@ const Subheading = styled.span`
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #4a5568;
   margin-bottom: 20px;
   margin-top: 5px;
   text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const pulse = keyframes`
@@ -128,6 +131,15 @@ const Rating = styled.div`
     border: 3px solid rgba(255, 255, 255, 0.6); /* Adjust the color and width of the border */
     border-radius: 15px; /* Match the border radius */
   }
+`;
+
+const SectionContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-left: 50px;
+  padding: 20px;
 `;
 
 const FinalCII = ({ simulate }) => {
@@ -194,15 +206,19 @@ const FinalCII = ({ simulate }) => {
       </HeadingSection>
       {simulate > 0 && (
         <Container>
+          <SectionContainer>
           <Label>Total CO2(MT): {totalCo2Mt.toFixed(2)}</Label>
           <Label>Total Transport Work: {totalTansPortWk.toFixed(2)}</Label>
           <Label>Attained CII: {attainedCII.toFixed(2)}</Label>
+          </SectionContainer>
+          <SectionContainer>
           <RatingWrapper>
             <Subheading>Rating</Subheading>
             <div style={{ flexDirection: "row", display: "flex" }}>
               <Rating rating={rating}>{rating}</Rating>
             </div>
           </RatingWrapper>
+          </SectionContainer>
         </Container>
       )}
     </Wrapper>

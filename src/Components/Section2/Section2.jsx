@@ -21,16 +21,17 @@ const Wrapper = styled.div`
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
 `;
 
 const Heading = styled.h2`
-  font-family: "Open Sans", sans-serif;
-  font-size: 24px;
   font-weight: 700;
-  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  color: #4a5568;
   margin-bottom: 10px;
-  margin-top: 5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 `;
 
 const ContentWrapper = styled.div`
@@ -47,10 +48,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 50%;
   padding: 0 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #fffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
   padding: 20px;
@@ -61,10 +61,11 @@ const Subheading = styled.span`
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #4a5568;
   margin-bottom: 10px;
   margin-top: 5px;
   text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const BoxContainer = styled.div`
@@ -82,11 +83,17 @@ const BoxContainer = styled.div`
 `;
 
 const Dropdown = styled.select`
-  padding: 5px;
+  padding: 8px;
   margin-top: 0px;
   width: 52%;
   border: 1px solid #ccc;
   border-radius: 5px;
+
+  &:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    outline: none;
+  }
 `;
 
 const Option = styled.option`
@@ -141,12 +148,12 @@ const ErrorMessage = styled.span`
 const Label = styled.label`
   font-size: 16px;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
-  color: #333;
   margin-right: 10px;
-  margin-top: 5px;
+  margin-top: 8px;
   flex: 1;
   text-align: right;
+  font-family:"Roboto", sans-serif;
+  color: #4a5568;
 `;
 
 const Input = styled.input`
@@ -201,6 +208,7 @@ const Section2 = () => {
 
   const [totalFuelRatio, setTotalFuelRatio] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [isOperationalError,setOperationalError] = useState(false)
   const [totalOperationalProfile,setTotalOperationalProfile] = useState(0)
 
   const handleLadenSpeedChange = (event) => {
@@ -224,7 +232,7 @@ const Section2 = () => {
       .reduce((acc, val) => acc + val, 0);
 
     setTotalOperationalProfile(total);
-    setIsError(total !== 100);
+    setOperationalError(total !== 100);
   }, [seaLaden,seaBallast,anchor,loadPort,dischargePort,manuvering]);
 
   const selectedShipName = getSelectedShip();
@@ -520,14 +528,14 @@ const Section2 = () => {
           <div style={{display:'flex', flexDirection:'row'}}>
           <div style={{display:'flex',flexDirection:'column',width:'20%'}}>
           <TotalSumSection>
-            <span>Total Sum:{totalFuelRatio}%</span>
-            {isError ? (
+            <span>Total Sum:{totalOperationalProfile}%</span>
+            {isOperationalError ? (
               <RedCross>✗</RedCross>
             ) : (
               <GreenTick>✓</GreenTick>
             )}
           </TotalSumSection>
-          {isError && <ErrorMessage>Total fuel ratio must be 100%.</ErrorMessage>}
+          {isOperationalError && <ErrorMessage>Total sum must be 100%.</ErrorMessage>}
           </div>
           <div style={{display:'flex',flexDirection:'column'}}>
           <FormGroup>

@@ -88,7 +88,7 @@ const Button = styled.div`
   margin: 10px 0px 20px 0px;
   color: white;
   font-size: 18px;
-  font-family: Open-sans;
+  font-family: "Roboto", sans-serif;
   cursor: pointer;
 `;
 
@@ -98,6 +98,8 @@ const NavItem = styled.div`
   text-align: center;
   width: 100%;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
   transition: background-color 0.3s;
   margin-top: 30px;
   &:hover {

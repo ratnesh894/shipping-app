@@ -18,18 +18,17 @@ const Wrapper = styled.div`
   padding: 12px;
   margin: 0 0 20px 0;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
 `;
 
 const Heading = styled.h2`
-  font-family: "Open Sans", sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 10px;
-  margin-top: 5px;
+ font-family: 'Roboto', sans-serif;
+ font-size: 1.2em;
+  color: #4a5568; /* Subtle text color */
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const ContentWrapper = styled.div`
@@ -38,29 +37,47 @@ const ContentWrapper = styled.div`
   width: 100%;
   justify-content: flex-start;
   gap: 10px;
-`;
+`; 
+
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   padding: 0 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid #ddd; */
+  border-radius: 12px;
+  background-color: #fffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
   padding: 20px;
   margin-top: 10px;
+  
 `;
 
-const Dropdown = styled.select`
+/* const Dropdown = styled.select`
   padding: 5px;
   margin-top: 0px;
   width: 52%;
   border: 1px solid #ccc;
   border-radius: 5px;
+`; */
+
+const Dropdown = styled.select`
+  padding: 10px;
+  margin-top: 5px;
+  width: 52%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7fafc;
+  transition: border-color 0.2s;
+  
+  &:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    outline: none;
+  }
 `;
 
 const Option = styled.option`
@@ -70,19 +87,34 @@ const Option = styled.option`
 const Label = styled.label`
   font-size: 16px;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
-  color: #333;
+  font-family:"Roboto", sans-serif;
+  color: #4a5568;
   margin-right: 10px;
   flex: 1;
   text-align: right;
 `;
 
-const Input = styled.input`
+/* const Input = styled.input`
   padding: 5px;
   width: 50%;
   border: 1px solid #ccc;
   border-radius: 5px;
-`;
+`; */
+
+const Input = styled.input`
+  padding: 7px;
+  width: 49%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7fafc;
+  transition: border-color 0.2s;
+  
+  &:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    outline: none;
+  }
+`; 
 
 const DisabledInput = styled(Input)`
   background-color: #f0f0f0; /* Light gray background */
@@ -105,8 +137,8 @@ const RatingWrapper = styled.div`
   margin-top: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #edf2f7;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
   padding: 20px;
@@ -151,14 +183,14 @@ const Rating = styled.div`
         return "linear-gradient(45deg, #ccc, #eee)";
     }
   }};
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.1);
   animation: ${pulse} 2s infinite;
 `;
 const Subheading = styled.span`
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #fff;
+  color: #ffff;
   text-align: center;
   padding: 0px;
 `;
@@ -276,6 +308,16 @@ const Section1 = () => {
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
+  };
+
+  const formatDate = (date = '') => {
+    try {
+      let dateString = date.split('-');
+      return `${dateString[2]}/${dateString[1]}/${dateString[0]}`;
+    } catch (err) {
+      console.log('hide');
+      return '';
+    }
   };
 
   const handleYearChange = (event) => {
@@ -442,7 +484,7 @@ const Section1 = () => {
         <Subheading>Rating {" "}</Subheading>
         {startDate && endDate && (
           <div>
-            (as of {startDate} to {endDate})
+            (as of {formatDate(startDate)} to {formatDate(endDate)})
           </div>
         )}
 </HeadingSection>
