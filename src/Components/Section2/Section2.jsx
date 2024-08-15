@@ -21,14 +21,14 @@ const Wrapper = styled.div`
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+  background: #F8F8F8;
 `;
 
 const Heading = styled.h2`
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
-  color: #4a5568;
+  color: #7c73e6;
   margin-bottom: 10px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
@@ -50,7 +50,8 @@ const Container = styled.div`
   padding: 0 20px;
   border-radius: 12px;
   background-color: #fffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
   max-height: 300px;
   overflow-y: auto;
   padding: 20px;
@@ -60,8 +61,8 @@ const Container = styled.div`
 const Subheading = styled.span`
   font-family: "Open Sans", sans-serif;
   font-size: 20px;
-  font-weight: 600;
-  color: #4a5568;
+  font-weight: 500;
+  color: #7c73e6;
   margin-bottom: 10px;
   margin-top: 5px;
   text-align: center;
@@ -102,7 +103,8 @@ const Option = styled.option`
 
 const FormGroup = styled.div`
   display: flex;
-  /* align-items: center; */
+  flex-direction: column;
+  align-items: center; 
   margin-top: 15px;
   margin-left: 0px;
   /* background: red; */
@@ -147,13 +149,13 @@ const ErrorMessage = styled.span`
 
 const Label = styled.label`
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   margin-right: 10px;
   margin-top: 8px;
   flex: 1;
   text-align: right;
   font-family:"Roboto", sans-serif;
-  color: #4a5568;
+  color: #7c73e6;
 `;
 
 const Input = styled.input`
@@ -161,6 +163,7 @@ const Input = styled.input`
   width: 50%;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background: #ECE8FF
 `;
 
 const Container1 = styled(Container)`

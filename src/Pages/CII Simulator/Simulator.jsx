@@ -38,8 +38,8 @@ const NavbarIcon = styled.div`
 
 const Navbar = styled.div`
   width: 15%;
-  height: 50%;
-  background-color: #f0f4f8;
+  height: 100%;
+  background-color: #7c73e6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +47,7 @@ const Navbar = styled.div`
   transition: width 0.3s, padding 0.3s;
   overflow: hidden;
   position: fixed;
-  top: 5;
+  top: 2;
   left: 0;
   z-index: 999;
 `;
@@ -93,15 +93,18 @@ const Button = styled.div`
 `;
 
 const NavItem = styled.div`
-  color: #333;
+  color: #ffff;
   padding: 15px 10px;
   text-align: center;
-  width: 100%;
+  width: 80%;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   font-size: 1.2em;
   transition: background-color 0.3s;
   margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
   &:hover {
     background-color: #ddd;
   }

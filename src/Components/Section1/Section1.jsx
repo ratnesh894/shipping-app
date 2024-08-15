@@ -20,13 +20,13 @@ const Wrapper = styled.div`
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd;
-  background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+  background: #F8F8F8;
 `;
 
 const Heading = styled.h2`
  font-family: 'Roboto', sans-serif;
  font-size: 1.2em;
-  color: #4a5568; /* Subtle text color */
+  color: #7c73e6; /* Subtle text color */
   margin-bottom: 20px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
@@ -41,19 +41,20 @@ const ContentWrapper = styled.div`
 
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: repeat(3, auto); /* Three rows */
   width: 50%;
   padding: 0 20px;
-  /* border: 1px solid #ddd; */
+  border: 1px solid #d3d3d3;
   border-radius: 12px;
   background-color: #fffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  max-height: 300px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-height: 350px;
   overflow-y: auto;
   padding: 20px;
   margin-top: 10px;
-  
+
 `;
 
 /* const Dropdown = styled.select`
@@ -67,10 +68,10 @@ const Container = styled.div`
 const Dropdown = styled.select`
   padding: 10px;
   margin-top: 5px;
-  width: 52%;
+  width: 55%;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f7fafc;
+  border-radius: 20px;
+  background-color: #ECE8FF;
   transition: border-color 0.2s;
   
   &:focus {
@@ -86,27 +87,21 @@ const Option = styled.option`
 
 const Label = styled.label`
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   font-family:"Roboto", sans-serif;
-  color: #4a5568;
-  margin-right: 10px;
+  color: #7c73e6;
+  margin-bottom: 5px;
   flex: 1;
   text-align: right;
 `;
 
-/* const Input = styled.input`
-  padding: 5px;
-  width: 50%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`; */
 
 const Input = styled.input`
-  padding: 7px;
-  width: 49%;
+  padding: 10px;
+  width: 50%;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f7fafc;
+  border-radius: 20px;
+  background-color: #ECE8FF;
   transition: border-color 0.2s;
   
   &:focus {
@@ -125,8 +120,9 @@ const DisabledInput = styled(Input)`
 
 const FormGroup = styled.div`
   display: flex;
+  flex-direction:column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 20px;
 `;
 
 const RatingWrapper = styled.div`
@@ -137,7 +133,7 @@ const RatingWrapper = styled.div`
   margin-top: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: #edf2f7;
+  background-color: #fffff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
