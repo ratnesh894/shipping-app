@@ -9,6 +9,9 @@ const Container = styled.div`
   margin: 20px;
   oveflow-y: scroll;
   display: flex;
+  flex-direction: row;
+  position: relative;
+  gap: 20px;
 `;
 
 // const Navbar = styled.div`
@@ -39,17 +42,18 @@ const NavbarIcon = styled.div`
 const Navbar = styled.div`
   width: 15%;
   height: 100%;
-  background-color: #7c73e6;
+  background-color: #00509d;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
   transition: width 0.3s, padding 0.3s;
   overflow: hidden;
-  position: fixed;
-  top: 2;
-  left: 0;
+  border-radius: 20px;
   z-index: 999;
+  position: fixed;
+  top: 58px;
+  left: 15px;
 `;
 
 const MainContent = styled.div`
@@ -58,7 +62,7 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center; /* Center horizontally */
   justify-content: center;
-  margin-left: 220px;
+  margin-left: 280px;
   transition: margin-left 0.3s;
   margin-top: 10px;
   width: 85%;
@@ -78,10 +82,11 @@ const SectionContainer = styled.div`
 // `;
 
 const Button = styled.div`
-  width: 50%;
+  width: 30%;
   height: 50px;
   background: #66cdaa;
   display: flex;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
   margin-top: auto;
@@ -93,15 +98,20 @@ const Button = styled.div`
 `;
 
 const NavItem = styled.div`
-  color: #ffff;
+  color: ${({ isActive }) =>
+    isActive ? "#000" : "#fff"}; /* Change text color based on active state */
+  background-color: ${({ isActive }) =>
+    isActive
+      ? "#fff"
+      : "transparent"}; /* Change background to white if active */
   padding: 15px 10px;
   text-align: center;
   width: 80%;
   cursor: pointer;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2em;
   transition: background-color 0.3s;
-  margin-top: 30px;
+  margin-top: 40px;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd;
@@ -110,15 +120,28 @@ const NavItem = styled.div`
   }
 `;
 
-function NavbarComponent({ onSectionClick }) {
+function NavbarComponent({ onSectionClick, activeSection }) {
   return (
     <Navbar>
       {/*  <h2>Navigation</h2> */}
-      <NavItem onClick={() => onSectionClick("section1")}>Current CII</NavItem>
-      <NavItem onClick={() => onSectionClick("section2")}>
+      <NavItem
+        isActive={activeSection === "section1"}
+        onClick={() => onSectionClick("section1")}
+      >
+        Current CII
+      </NavItem>
+      <NavItem
+        isActive={activeSection === "section2"}
+        onClick={() => onSectionClick("section2")}
+      >
         Remaining Days Profile
       </NavItem>
-      <NavItem onClick={() => onSectionClick("section3")}>Final CII</NavItem>
+      <NavItem
+        isActive={activeSection === "section3"}
+        onClick={() => onSectionClick("section3")}
+      >
+        Final CII
+      </NavItem>
     </Navbar>
   );
 }
@@ -126,16 +149,15 @@ function NavbarComponent({ onSectionClick }) {
 function CIISimulator() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSimulate, setSImulate] = useState(0);
-
-  const handleSimulate = () => {
-    setSImulate((prev) => prev + 1);
-  };
+  const [activeSection, setActiveSection] = useState("section1");
 
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const finalCIIRef = useRef(null);
 
   const handleSectionClick = (section) => {
+    setActiveSection(section);
+
     if (section === "section1") {
       section1Ref.current.scrollIntoView({ behavior: "smooth" });
     } else if (section === "section2") {
@@ -145,11 +167,26 @@ function CIISimulator() {
     }
   };
 
+  const handleSimulate = () => {
+    setSImulate((prev) => prev + 1);
+
+    finalCIIRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <>
+    <div
+      style={{
+        background: "#ECE8FF",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Header />
       <Container>
-        <NavbarComponent onSectionClick={handleSectionClick} />
+        <NavbarComponent
+          activeSection={activeSection}
+          onSectionClick={handleSectionClick}
+        />
         <MainContent>
           <SectionContainer ref={section1Ref}>
             <Section1 />
@@ -165,7 +202,7 @@ function CIISimulator() {
           </SectionContainer>
         </MainContent>
       </Container>
-    </>
+    </div>
   );
 }
 

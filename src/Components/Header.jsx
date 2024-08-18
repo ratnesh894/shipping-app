@@ -2,12 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.header`
-  background-color: #353cf7; /* Dark Blue */
+  background-color: #00509d; /* Dark Blue */
   color: #FFFFFF; /* White */
   padding: 0.5rem;
   display: flex;
+  height: 40px;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+  width: 98%;
+  margin: 0px 0px 0px 5px;
 `;
 
 const Title = styled.h1`
@@ -29,7 +33,7 @@ const Nav = styled.nav`
 
 const Header = () => (
   <Wrapper>
-    <Title>CII Simulator</Title>
+    <Title>CII Dashboard</Title>
     {/* <Nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>

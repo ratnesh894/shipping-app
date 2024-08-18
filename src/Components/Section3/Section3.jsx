@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   getCo2Value,
@@ -7,8 +7,18 @@ import {
   getDistanceVal,
   getSelectedShip,
   getRequiredCII,
+  getMainEngineCons,
+  getAttainedCII,
+  getRating,
 } from "../../utility/sharedState";
 import data from "../../data/onboardingSheet.json";
+import SpeedLineGraph from "../../Common/LineChart/Graph";
+import { fueltable } from "../../data/fuelTable";
+import {
+  findAEConst,
+  findMEConsBallast,
+  findMEConsLaden,
+} from "../../utility/Calculations";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,13 +28,13 @@ const Wrapper = styled.div`
   margin: 0 0 20px 0;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;
+  border: 1px solid #00509d;
   background-color: #f9f9f9;
 `;
 
 const HeadingSection = styled.div`
   width: 100%;
-  background: #4caf50; /* Green background */
+  background: #00509d; /* Green background */
   color: white; /* White text */
   padding: 10px 0; /* Padding for top and bottom */
   border-radius: 15px 15px 0 0; /* Rounded corners at the top */
@@ -44,11 +54,9 @@ const Label = styled.label`
   font-size: 16px;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
-  color: #4a5568;
-  margin-right: 10px;
+  color: #152737;
   flex: 1;
-  text-align: left;
-  margin-bottom: 10px;
+  margin: 10px 10px 10px 0px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
@@ -56,8 +64,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 40px;
-  justify-content: center;
-  gap: 40px;
+  justify-content: space-between;
+  gap: 20px;
 `;
 
 const RatingWrapper = styled.div`
@@ -134,12 +142,32 @@ const Rating = styled.div`
 `;
 
 const SectionContainer = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  margin-left: 50px;
+  width: 50%;
+  border-radius: 15px;
+  background-color: #fffff;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  /* margin-left: 50px; */
   padding: 20px;
+`;
+
+const RatingValue = styled.div`
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  position: relative;
+  color: #4a5568;
+  border-radius: 15px;
+  background:#ECE8FF;
+  margin-left: 15px;
+  margin-top: 10px;
+  border: 3px solid #fff;
 `;
 
 const FinalCII = ({ simulate }) => {
@@ -149,20 +177,20 @@ const FinalCII = ({ simulate }) => {
   const [rating, setRating] = useState("");
 
   useEffect(() => {
-    const co2Value = getCo2Value();
-    const tranPortWorkValue = getTransportWork();
-    const co2Section1Value = getCo2Section1();
-    const distance = getDistanceVal();
-    const selectedShip = getSelectedShip();
-    const requiredCII = getRequiredCII();
+    const co2Value = getCo2Value() || 0;
+    const tranPortWorkValue = getTransportWork() || 0;
+    const co2Section1Value = getCo2Section1() || 0;
+    const distance = getDistanceVal() || 0;
+    const selectedShip = getSelectedShip() || 0;
+    const requiredCII = getRequiredCII() || 0;
 
     const shipData = data["Onboarding Sheet"].find(
       (ship) => ship["Vessel Name"] === selectedShip
     );
-    const d1Value = shipData ? shipData["d1"] : null;
-    const d2Value = shipData ? shipData["d2"] : null;
-    const d3Value = shipData ? shipData["d3"] : null;
-    const d4Value = shipData ? shipData["d4"] : null;
+    const d1Value = shipData ? shipData["d1"] : 0;
+    const d2Value = shipData ? shipData["d2"] : 0;
+    const d3Value = shipData ? shipData["d3"] : 0;
+    const d4Value = shipData ? shipData["d4"] : 0;
 
     const limitA = requiredCII * d1Value;
     const limitB = requiredCII * d2Value;
@@ -199,28 +227,50 @@ const FinalCII = ({ simulate }) => {
     setRating(generateRating());
   }, [simulate]);
 
+  console.log(getAttainedCII());
+  console.log(getRating());
+  
+  
+
   return (
     <Wrapper>
       <HeadingSection>
         <Heading>Output - Predicted CII</Heading>
       </HeadingSection>
-      {simulate > 0 && (
-        <Container>
-          <SectionContainer>
+
+      <Container>
+        <SectionContainer>
           <Label>Total CO2(MT): {totalCo2Mt.toFixed(2)}</Label>
           <Label>Total Transport Work: {totalTansPortWk.toFixed(2)}</Label>
           <Label>Attained CII: {attainedCII.toFixed(2)}</Label>
-          </SectionContainer>
-          <SectionContainer>
-          <RatingWrapper>
-            <Subheading>Rating</Subheading>
+        </SectionContainer>
+        <SectionContainer>
+          <Subheading>Consumption & Speed Graph</Subheading>
+          <div style={{ marginTop: "15px" }}>
+            <SpeedLineGraph data={data} />
+          </div>
+        </SectionContainer>
+      </Container>
+      <Container>
+        <SectionContainer>
+          <Subheading>Attained CII</Subheading>
+          <RatingWrapper> 
             <div style={{ flexDirection: "row", display: "flex" }}>
-              <Rating rating={rating}>{rating}</Rating>
+              <Rating rating={getRating()}>{getRating()}</Rating>
+              <RatingValue rating={getAttainedCII()}>{getAttainedCII().toFixed(2)}</RatingValue>
             </div>
           </RatingWrapper>
-          </SectionContainer>
-        </Container>
-      )}
+        </SectionContainer>
+        <SectionContainer>
+        <Subheading>Predicted CII</Subheading>
+          <RatingWrapper> 
+            <div style={{ flexDirection: "row", display: "flex" }}>
+              <Rating rating={rating}>{rating}</Rating>
+              <RatingValue rating={attainedCII}>{attainedCII.toFixed(2)}</RatingValue>
+            </div>
+          </RatingWrapper>
+        </SectionContainer>
+      </Container>
     </Wrapper>
   );
 };

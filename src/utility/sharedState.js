@@ -7,6 +7,9 @@ let co2Section1 =  null;
 let distance = null;
 let reqCII = null;
 let remDays = null;
+let consumption = null;
+let rating = null;
+let attainedCII = null;
 
 export const setSelectedShip = (ship) => {
   selectedShip = ship;
@@ -70,4 +73,28 @@ export const setRemainingDays= (val) => {
 
 export const getRemainingDays = () => {
   return remDays;
+}
+
+export const setMainEngineCons = (val) => {
+  consumption = val
+}
+
+export const getMainEngineCons = () => {
+  return consumption;
+}
+
+export const setRating = (val) => {
+  rating = val
+}
+
+export const getRating = () => {
+  return rating;
+}
+
+export const setAttainedCII = (val) => {
+  attainedCII = val
+}
+
+export const getAttainedCII = () => {
+  return attainedCII;
 }

@@ -8,6 +8,8 @@ import {
   setDistanceVal,
   setRequiredCII,
   setRemainingDays,
+  setRating,
+  setAttainedCII,
 } from "../../utility/sharedState";
 
 const Wrapper = styled.div`
@@ -20,13 +22,14 @@ const Wrapper = styled.div`
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   border: 1px solid #ddd;
-  background: #F8F8F8;
+  background: #f8f8f8;
 `;
 
 const Heading = styled.h2`
- font-family: 'Roboto', sans-serif;
- font-size: 1.2em;
-  color: #7c73e6; /* Subtle text color */
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2em;
+  font-weight: 800;
+  color: #00509d; /* Subtle text color */
   margin-bottom: 20px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 `;
@@ -37,24 +40,12 @@ const ContentWrapper = styled.div`
   width: 100%;
   justify-content: flex-start;
   gap: 10px;
-`; 
-
+`;
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns */
   grid-template-rows: repeat(3, auto); /* Three rows */
-  width: 50%;
-  padding: 0 20px;
-  border: 1px solid #d3d3d3;
-  border-radius: 12px;
-  background-color: #fffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  max-height: 350px;
-  overflow-y: auto;
-  padding: 20px;
-  margin-top: 10px;
-
 `;
 
 /* const Dropdown = styled.select`
@@ -68,12 +59,13 @@ const Container = styled.div`
 const Dropdown = styled.select`
   padding: 10px;
   margin-top: 5px;
-  width: 55%;
+  width: 58%;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #ECE8FF;
+  border-radius: 15px;
+  background-color: #ece8ff;
   transition: border-color 0.2s;
-  
+  text-align: center;
+
   &:focus {
     border-color: #3182ce;
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
@@ -87,29 +79,29 @@ const Option = styled.option`
 
 const Label = styled.label`
   font-size: 16px;
-  font-weight: 400;
-  font-family:"Roboto", sans-serif;
-  color: #7c73e6;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  color: #152737;
   margin-bottom: 5px;
   flex: 1;
   text-align: right;
 `;
 
-
 const Input = styled.input`
   padding: 10px;
   width: 50%;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #ECE8FF;
+  border-radius: 15px;
+  background-color: #ece8ff;
   transition: border-color 0.2s;
-  
+  text-align: center;
+
   &:focus {
     border-color: #3182ce;
     box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
     outline: none;
   }
-`; 
+`;
 
 const DisabledInput = styled(Input)`
   background-color: #f0f0f0; /* Light gray background */
@@ -120,7 +112,7 @@ const DisabledInput = styled(Input)`
 
 const FormGroup = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   margin-top: 20px;
 `;
@@ -192,14 +184,38 @@ const Subheading = styled.span`
 `;
 
 const HeadingSection = styled.div`
-   width: 100%;
-  background: #4caf50; /* Green background */
+  width: 100%;
+  background: #00509d;
   color: white; /* White text */
   padding: 8px 0; /* Padding for top and bottom */
   border-radius: 15px 15px 0 0; /* Rounded corners at the top */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
   text-align: center; /* Center the text */
   margin-bottom: 20px;
+`;
+
+const Subheading1 = styled.span`
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #00509d;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const DivWrapper = styled.div`
+  width: 50%;
+  padding: 0 20px;
+  border: 1px solid #d3d3d3;
+  border-radius: 12px;
+  background-color: #fffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 20px;
+  margin-top: 10px;
 `;
 
 const IndicatorWrapper = styled.div`
@@ -306,13 +322,13 @@ const Section1 = () => {
     setSelectedOption(event.target.value);
   };
 
-  const formatDate = (date = '') => {
+  const formatDate = (date = "") => {
     try {
-      let dateString = date.split('-');
+      let dateString = date.split("-");
       return `${dateString[2]}/${dateString[1]}/${dateString[0]}`;
     } catch (err) {
-      console.log('hide');
-      return '';
+      console.log("hide");
+      return "";
     }
   };
 
@@ -351,7 +367,7 @@ const Section1 = () => {
   const remainingDays = calculateDaysDifference(futureReferenceDate, endDate); // Output: 27
   const attainedCII =
     parseFloat(co2 * 1000000) / (parseFloat(distance) * 49000);
-  setRemainingDays(remainingDays)
+  setRemainingDays(remainingDays);
   const shipData = data["Onboarding Sheet"][selectedOption];
 
   const d1Value = shipData ? shipData["d1"] : null;
@@ -381,6 +397,8 @@ const Section1 = () => {
   };
 
   const rating = generateRating();
+  setRating(rating);
+  setAttainedCII(attainedCII)
 
   setRequiredCII(requiredCII);
   setCo2Section1(co2);
@@ -390,44 +408,53 @@ const Section1 = () => {
     <Wrapper>
       <Heading>Current CII</Heading>
       <ContentWrapper>
-        <Container>
-          <FormGroup>
-            <Label>Ship Name:</Label>
-            <Dropdown value={selectedOption} onChange={handleChange}>
-              {options.map((option) => (
-                <Option key={option.id} value={option.id}>
-                  {option.name}
-                </Option>
-              ))}
-            </Dropdown>
-          </FormGroup>
-          <FormGroup>
-            <Label>Size:</Label>
-            <DisabledInput type="text" value={selectedData["Size"]} readOnly />
-          </FormGroup>
-          <FormGroup>
-            <Label>Ship Class:</Label>
-            <DisabledInput
-              type="text"
-              value={selectedData["Vessel Class"]}
-              readOnly
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Year of Measurement:</Label>
-            <Dropdown value={selectedYear} onChange={handleYearChange}>
-              {yearOption.map((item) => (
-                <Option key={item.id} value={item.id}>
-                  {item.value}
-                </Option>
-              ))}
-            </Dropdown>
-          </FormGroup>
-          <FormGroup>
-            <Label>Correction Factor (%):</Label>
-            <DisabledInput type="text" value={correlationFactor} readOnly />
-          </FormGroup>
-        </Container>
+        <DivWrapper>
+          <Subheading1>General</Subheading1>
+          <Container>
+            <FormGroup>
+              <Label>Ship Name:</Label>
+              <Dropdown value={selectedOption} onChange={handleChange}>
+                {options.map((option) => (
+                  <Option key={option.id} value={option.id}>
+                    {option.name}
+                  </Option>
+                ))}
+              </Dropdown>
+            </FormGroup>
+            <FormGroup>
+              <Label>Size:</Label>
+              <DisabledInput
+                type="text"
+                value={selectedData["Size"]}
+                readOnly
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Ship Class:</Label>
+              <DisabledInput
+                type="text"
+                value={selectedData["Vessel Class"]}
+                readOnly
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Year of Measurement:</Label>
+              <Dropdown value={selectedYear} onChange={handleYearChange}>
+                {yearOption.map((item) => (
+                  <Option key={item.id} value={item.id}>
+                    {item.value}
+                  </Option>
+                ))}
+              </Dropdown>
+            </FormGroup>
+            <FormGroup>
+              <Label>Correction Factor (%):</Label>
+              <DisabledInput type="text" value={correlationFactor} readOnly />
+            </FormGroup>
+          </Container>
+        </DivWrapper>
+        <DivWrapper>
+        <Subheading1>Current CII Data</Subheading1>
         <Container>
           <FormGroup>
             <Label>CII Data Start Date:</Label>
@@ -474,16 +501,17 @@ const Section1 = () => {
             />
           </FormGroup>
         </Container>
+        </DivWrapper>
       </ContentWrapper>
       <RatingWrapper>
         <HeadingSection>
-        <Subheading>Rating {" "}</Subheading>
-        {startDate && endDate && (
-          <div>
-            (as of {formatDate(startDate)} to {formatDate(endDate)})
-          </div>
-        )}
-</HeadingSection>
+          <Subheading>Rating </Subheading>
+          {startDate && endDate && (
+            <div>
+              (as of {formatDate(startDate)} to {formatDate(endDate)})
+            </div>
+          )}
+        </HeadingSection>
         <div style={{ flexDirection: "row", display: "flex" }}>
           <Rating rating={rating}>{rating}</Rating>
           <div
