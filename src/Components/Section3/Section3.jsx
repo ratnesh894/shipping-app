@@ -153,6 +153,10 @@ const SectionContainer = styled.div`
   padding: 20px;
 `;
 
+const ArrowContainer = styled.div`
+  margin-top: 70px;
+`;
+
 const RatingValue = styled.div`
   width: 100px;
   height: 50px;
@@ -245,7 +249,7 @@ const FinalCII = ({ simulate }) => {
           <Label>Attained CII: {attainedCII.toFixed(2)}</Label>
         </SectionContainer>
         <SectionContainer>
-          <Subheading>Consumption & Speed Graph</Subheading>
+          <Subheading>Speed & Consumption(ME) Curve</Subheading>
           <div style={{ marginTop: "15px" }}>
             <SpeedLineGraph data={data} />
           </div>
@@ -253,14 +257,17 @@ const FinalCII = ({ simulate }) => {
       </Container>
       <Container>
         <SectionContainer>
-          <Subheading>Attained CII</Subheading>
+          <Subheading>Current CII</Subheading>
           <RatingWrapper> 
             <div style={{ flexDirection: "row", display: "flex" }}>
-              <Rating rating={getRating()}>{getRating()}</Rating>
-              <RatingValue rating={getAttainedCII()}>{getAttainedCII().toFixed(2)}</RatingValue>
+              <Rating style={{width:'100px',height:'70px'}} rating={getRating()}>{getRating()}</Rating>
+              <RatingValue style ={{width:'80px',height:'40px'}}rating={getAttainedCII()}>{getAttainedCII().toFixed(2)}</RatingValue>
             </div>
           </RatingWrapper>
         </SectionContainer>
+        <ArrowContainer>
+         <img src="arrow-icon.png" alt="arrow" height='40px'/>
+        </ArrowContainer>
         <SectionContainer>
         <Subheading>Predicted CII</Subheading>
           <RatingWrapper> 

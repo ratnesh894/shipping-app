@@ -20,67 +20,67 @@ const percentage = 100 + consumption;
 const data = [
   {
     speed: "8",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 8)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 8)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 8)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 8)) / 100).toFixed(2),
   },
   {
     speed: "8.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 8.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 8.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 8.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 8.5)) / 100).toFixed(2),
   },
   {
     speed: "9",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 9)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 9)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 9)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 9)) / 100).toFixed(2),
   },
   {
     speed: "9.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 9.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 9.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 9.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 9.5)) / 100).toFixed(2),
   },
   {
     speed: "10",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 10)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 10)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 10)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 10)) / 100).toFixed(2),
   },
   {
     speed: "10.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 10.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 10.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 10.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 10.5)) / 100).toFixed(2),
   },
   {
     speed: "11",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 11)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 11)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 11)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 11)) / 100).toFixed(2),
   },
   {
     speed: "11.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 11.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 11.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 11.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 11.5)) / 100).toFixed(2),
   },
   {
     speed: "12",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 12)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 12)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 12)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 12)) / 100).toFixed(2),
   },
   {
     speed: "12.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 12.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 12.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 12.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 12.5)) / 100).toFixed(2),
   },
   {
     speed: "13",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 13)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 13)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 13)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 13)) / 100).toFixed(2),
   },
   {
     speed: "13.5",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 13.5)) / 100,
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 13.5)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 13.5)) / 100).toFixed(2),
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 13.5)) / 100).toFixed(2),
   },
   {
     speed: "14",
-    ballastSpeed: (percentage * findMEConsBallast(fueltable, 14)) / 100,
+    ballastSpeed: ((percentage * findMEConsBallast(fueltable, 14)) / 100).toFixed(2),
     ladenSpeed: (percentage * findMEConsLaden(fueltable, 14)) / 100,
   },
 ];
@@ -93,20 +93,20 @@ const SpeedLineGraph = () => {
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="speed">
-          <Label value="Speed" offset={-5} position="insideBottom" />
+        <XAxis dataKey="speed" interval={1}>
+          <Label value="Speed (kts)" offset={-3} position="insideBottom" />
         </XAxis>
         <YAxis>
           <Label
-            value="Consumption"
+            value="Consumption (mt/24h)"
             angle={-90}
-            offset={20}
-            dy={25}
+            offset={15}
+            dy={80}
             position="insideLeft"
           />
         </YAxis>
         <Tooltip />
-        <Legend />
+       {/*  <Legend /> */}
         <Line
           type="monotone"
           dataKey="ballastSpeed"
