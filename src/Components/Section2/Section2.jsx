@@ -309,6 +309,7 @@ const Section2 = () => {
   const meConstBallastValue = findMEConsBallast(fueltable, seaBallastSpeed);
   const meConstManeuvering = findMEConsBallast(fueltable, seaManeuvringSpeed);
 
+  
   const seaLadenConsPerDayME = meConsLadenValue
     ? (parseFloat(meConsLadenValue) *
         (100 + parseFloat(mainEngineConsumption))) /

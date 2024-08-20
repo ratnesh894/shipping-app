@@ -168,7 +168,7 @@ const RatingValue = styled.div`
   position: relative;
   color: #4a5568;
   border-radius: 15px;
-  background:#ECE8FF;
+  background: #ece8ff;
   margin-left: 15px;
   margin-top: 10px;
   border: 3px solid #fff;
@@ -209,7 +209,7 @@ const FinalCII = ({ simulate }) => {
     setTotalTansPortWk(totalTansPortWk);
 
     const attainedCII =
-      (parseFloat(totalCo2Mt) * 1000000) / parseFloat(totalTansPortWk);
+      (parseFloat(totalCo2Mt) * 1000000) / parseFloat(totalTansPortWk) || 0;
     setAttainedCII(attainedCII);
 
     const generateRating = () => {
@@ -231,11 +231,6 @@ const FinalCII = ({ simulate }) => {
     setRating(generateRating());
   }, [simulate]);
 
-  console.log(getAttainedCII());
-  console.log(getRating());
-  
-  
-
   return (
     <Wrapper>
       <HeadingSection>
@@ -251,29 +246,41 @@ const FinalCII = ({ simulate }) => {
         <SectionContainer>
           <Subheading>Speed & Consumption(ME) Curve</Subheading>
           <div style={{ marginTop: "15px" }}>
-            <SpeedLineGraph data={data} />
+            <SpeedLineGraph />
           </div>
         </SectionContainer>
       </Container>
       <Container>
         <SectionContainer>
           <Subheading>Current CII</Subheading>
-          <RatingWrapper> 
+          <RatingWrapper>
             <div style={{ flexDirection: "row", display: "flex" }}>
-              <Rating style={{width:'100px',height:'70px'}} rating={getRating()}>{getRating()}</Rating>
-              <RatingValue style ={{width:'80px',height:'40px'}}rating={getAttainedCII()}>{getAttainedCII().toFixed(2)}</RatingValue>
+              <Rating
+                style={{ width: "100px", height: "70px" }}
+                rating={getRating()}
+              >
+                {getRating()}
+              </Rating>
+              <RatingValue
+                style={{ width: "80px", height: "40px" }}
+                rating={getAttainedCII()}
+              >
+                {getAttainedCII().toFixed(2)}
+              </RatingValue>
             </div>
           </RatingWrapper>
         </SectionContainer>
         <ArrowContainer>
-         <img src="arrow-icon.png" alt="arrow" height='40px'/>
+          <img src="arrow-icon.png" alt="arrow" height="40px" />
         </ArrowContainer>
         <SectionContainer>
-        <Subheading>Predicted CII</Subheading>
-          <RatingWrapper> 
+          <Subheading>Predicted CII</Subheading>
+          <RatingWrapper>
             <div style={{ flexDirection: "row", display: "flex" }}>
               <Rating rating={rating}>{rating}</Rating>
-              <RatingValue rating={attainedCII}>{attainedCII.toFixed(2)}</RatingValue>
+              <RatingValue rating={attainedCII}>
+                {attainedCII.toFixed(2)}
+              </RatingValue>
             </div>
           </RatingWrapper>
         </SectionContainer>

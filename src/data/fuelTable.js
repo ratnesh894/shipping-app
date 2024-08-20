@@ -124,7 +124,7 @@ export const fueltable = [
     Speed: 14,
     REF: "Tanker 14",
     "ME Cons (Ballast)": 21.8348,
-    "ME Cons (Laden)": 24.3276,
+    "ME Cons (Laden)": 24.3,
     "AE Cons": 2.6,
     "Boiler Cons": 0,
     "Other Cons": 0.8679948964569635,

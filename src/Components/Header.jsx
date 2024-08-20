@@ -4,14 +4,12 @@ import styled from 'styled-components';
 const Wrapper = styled.header`
   background-color: #00509d; /* Dark Blue */
   color: #FFFFFF; /* White */
-  padding: 0.5rem;
+  padding: 5px 0px 5px 0px;
   display: flex;
   height: 40px;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  width: 98%;
-  margin: 0px 0px 0px 5px;
+  width: 100%;
 `;
 
 const Title = styled.h1`

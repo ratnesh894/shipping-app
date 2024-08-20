@@ -366,7 +366,7 @@ const Section1 = () => {
   );
   const remainingDays = calculateDaysDifference(futureReferenceDate, endDate); // Output: 27
   const attainedCII =
-    parseFloat(co2 * 1000000) / (parseFloat(distance) * 49000);
+    parseFloat(co2 * 1000000) / (parseFloat(distance) * 49000) || 0;
   setRemainingDays(remainingDays);
   const shipData = data["Onboarding Sheet"][selectedOption];
 
@@ -454,53 +454,53 @@ const Section1 = () => {
           </Container>
         </DivWrapper>
         <DivWrapper>
-        <Subheading1>Current CII Data</Subheading1>
-        <Container>
-          <FormGroup>
-            <Label>CII Data Start Date:</Label>
-            <Input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStarDate(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>CII Data End Date:</Label>
-            <Input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Future Reference Date:</Label>
-            <Input
-              type="date"
-              value={futureReferenceDate}
-              onChange={(e) => setFutureReferenceDate(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Remaining Period (Days): </Label>
-            <DisabledInput type="number" value={remainingDays} readOnly />
-          </FormGroup>
-          <FormGroup>
-            <Label>CO2 (MT):</Label>
-            <Input
-              type="number"
-              value={co2}
-              onChange={(e) => setCo2(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Distance (NM):</Label>
-            <Input
-              type="number"
-              value={distance}
-              onChange={(e) => setDistance(e.target.value)}
-            />
-          </FormGroup>
-        </Container>
+          <Subheading1>Current CII Data</Subheading1>
+          <Container>
+            <FormGroup>
+              <Label>CII Data Start Date:</Label>
+              <Input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStarDate(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>CII Data End Date:</Label>
+              <Input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Future Reference Date:</Label>
+              <Input
+                type="date"
+                value={futureReferenceDate}
+                onChange={(e) => setFutureReferenceDate(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Remaining Period (Days): </Label>
+              <DisabledInput type="number" value={remainingDays} readOnly />
+            </FormGroup>
+            <FormGroup>
+              <Label>CO2 (MT):</Label>
+              <Input
+                type="number"
+                value={co2}
+                onChange={(e) => setCo2(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Distance (NM):</Label>
+              <Input
+                type="number"
+                value={distance}
+                onChange={(e) => setDistance(e.target.value)}
+              />
+            </FormGroup>
+          </Container>
         </DivWrapper>
       </ContentWrapper>
       <RatingWrapper>
@@ -513,7 +513,12 @@ const Section1 = () => {
           )}
         </HeadingSection>
         <div style={{ flexDirection: "row", display: "flex" }}>
-          <Rating rating={rating}>{rating}</Rating>
+          {
+            attainedCII > 0 && (
+              <Rating rating={rating}>{rating}</Rating>
+            )
+          }
+
           <div
             style={{
               display: "flex",

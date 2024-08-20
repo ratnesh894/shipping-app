@@ -14,8 +14,12 @@ import { fueltable } from "../../data/fuelTable";
 import { findMEConsBallast, findMEConsLaden } from "../../utility/Calculations";
 import { getMainEngineCons } from "../../utility/sharedState";
 
-const consumption = getMainEngineCons();
-const percentage = 100 + consumption;
+
+
+const SpeedLineGraph = () => {
+
+  const consumption = getMainEngineCons();
+const percentage = 100 + parseFloat(consumption);
 
 const data = [
   {
@@ -81,11 +85,10 @@ const data = [
   {
     speed: "14",
     ballastSpeed: ((percentage * findMEConsBallast(fueltable, 14)) / 100).toFixed(2),
-    ladenSpeed: (percentage * findMEConsLaden(fueltable, 14)) / 100,
+    ladenSpeed: ((percentage * findMEConsLaden(fueltable, 14)) / 100),
   },
 ];
 
-const SpeedLineGraph = () => {
   return (
     <ResponsiveContainer width="100%" height={250}>
       <LineChart
