@@ -255,12 +255,15 @@ const FinalCII = ({ simulate }) => {
           <Subheading>Current CII</Subheading>
           <RatingWrapper>
             <div style={{ flexDirection: "row", display: "flex" }}>
-              <Rating
-                style={{ width: "100px", height: "70px" }}
-                rating={getRating()}
-              >
-                {getRating()}
-              </Rating>
+              {attainedCII > 0 && (
+                <Rating
+                  style={{ width: "100px", height: "70px" }}
+                  rating={getRating()}
+                >
+                  {getRating()}
+                </Rating>
+              )}
+
               <RatingValue
                 style={{ width: "80px", height: "40px" }}
                 rating={getAttainedCII()}
@@ -277,7 +280,7 @@ const FinalCII = ({ simulate }) => {
           <Subheading>Predicted CII</Subheading>
           <RatingWrapper>
             <div style={{ flexDirection: "row", display: "flex" }}>
-              <Rating rating={rating}>{rating}</Rating>
+              {attainedCII > 0 && <Rating rating={rating}>{rating}</Rating>}
               <RatingValue rating={attainedCII}>
                 {attainedCII.toFixed(2)}
               </RatingValue>
